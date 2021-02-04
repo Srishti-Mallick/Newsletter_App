@@ -1,20 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const request = require('request');
-const https = require('https');
 const mailchimp =require('@mailchimp/mailchimp_marketing');
 
 mailchimp.setConfig({
-    apiKey: "afb9baa59da65668c12539ba4059f74c-us7",
-    server: "us7"
+    apiKey: "YOUR_API_KEY",
+    server: "usX"
 });
-
-// async function run() {
-//   const response = await mailchimp.ping.get();
-//   console.log(response);
-// }
-
-// run();
 
 const app = express();
 
@@ -29,7 +20,7 @@ app.post("/", function(req, res){
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const email = req.body.email;
-    const list_id = "781242792f"
+    const list_id = "YOUR_LIST_ID"
 
     const run = async () => {
     const response = await mailchimp.lists.batchListMembers(list_id, {
@@ -61,9 +52,3 @@ app.post("/failure", function(req, res){
 app.listen(process.env.PORT || 3000, function(){
     console.log("Server is up and running");
 })
-
-//API key
-//afb9baa59da65668c12539ba4059f74c-us7
-
-//List ID
-//781242792f
