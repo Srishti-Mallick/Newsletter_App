@@ -3,8 +3,8 @@ const bodyParser = require('body-parser');
 const mailchimp =require('@mailchimp/mailchimp_marketing');
 
 mailchimp.setConfig({
-    apiKey: "YOUR_API_KEY",
-    server: "usX"
+    apiKey: "YOUR_API_KEY",	//add your api key
+    server: "usX"		//add your server
 });
 
 const app = express();
@@ -20,7 +20,7 @@ app.post("/", function(req, res){
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const email = req.body.email;
-    const list_id = "YOUR_LIST_ID"
+    const list_id = "YOUR_LIST_ID"	//add your list id
 
     const run = async () => {
     const response = await mailchimp.lists.batchListMembers(list_id, {
